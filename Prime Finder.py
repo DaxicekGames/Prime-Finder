@@ -1,19 +1,18 @@
 import math
-ver = "2.0"
+ver = "2.1"
 
 def prime(num):
-    is_prime = None
+    is_prime = True
 
     if num > 1:
         for i in range(2, int(math.sqrt(num))+1):
-            if (num % i) == 0:
-                is_prime = True
-                break
+            if num % i == 0:
+                is_prime = False
 
     if num == 2:
-        is_prime = True
-
-    return is_prime
+        return True
+    else:
+        return is_prime
 
 
 def find():
@@ -27,11 +26,6 @@ def find():
         max_num = int(max_num)
     set_number = i
 
-    if (i % 2) == 0:
-        i += 1
-    if (i % 5) == 0 and i > 5:
-            i += 2
-
     print("---------------------------")
 
     log = open("log.txt", "a")
@@ -39,16 +33,14 @@ def find():
     count = 1
 
     while True:
-        if i > max_num and max_num != False:
+        if i >= max_num and max_num != False:
             break
-        if (i % 5) == 0 and i > 5:
-            i += 2
         if prime(i) == True:
             print(f"{i} - is prime - T - attempts: {count}")
             log.write(f"{i} - is prime - T - attempts: {count}\n")
         else:
             log.write(f"{i} - faild - F - attempts: {count}\n")
-        i += 2
+        i += 1
         count += 1
 
     log.write("\n\n")
